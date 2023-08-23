@@ -1,34 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Development
+![image](https://github.com/itodev-source/connectio-api-next/assets/92868937/4d98c1dc-cd0c-49ef-a5b4-1cccf1f2570f)
 
-## Getting Started
 
-First, run the development server:
+- [x] Connection to an api to retrieve all data with next13
+- [x] Once rendered retrieve data from an api
+- [x] Place Skeleton Item
+- [x] Use Typescript
+- [x] Use Loading from next 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+# TypeScript in fetch
+```
+  const posts = await fetch(
+    'https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty&limitToFirst=10&orderBy=%22$key%22'
+  ).then((res) => res.json() as Promise<number[]>);
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```
+  const items = await fetch(
+    `https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`
+  ).then(
+    (res) =>
+      res.json() as Promise<{ title: string; text: string; type: string }>
+  );
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Typescript in Props
+```
+export default function Item({
+  id,
+  title,
+  text,
+  by,
+}: {
+  id: number;
+  title: string;
+  text: string;
+  by: string;
+}) {
+ 
+  return (
+    <div>
+      {id}
+    </div>
+  );
+}
+```
